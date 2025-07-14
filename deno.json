@@ -1,0 +1,66 @@
+{
+  "name": "@akin01/deno-redis",
+  "version": "1.0.0",
+  "description": "A modern, fully-typed Redis client for Deno with enhanced performance, comprehensive TypeScript support, and native JSR compatibility.",
+  "exports": "./mod.ts",
+  "tasks": {
+    "test": "deno test --allow-net --allow-env tests/",
+    "test:watch": "deno test --allow-net --allow-env --watch tests/",
+    "verify": "deno run --allow-net --allow-env tests/verify_setup.ts",
+    "fmt": "deno fmt",
+    "lint": "deno lint",
+    "check": "deno check mod.ts",
+    "example:basic": "deno run -EN examples/basic.ts",
+    "example:pubsub": "deno run -EN examples/pubsub.ts",
+    "example:pipeline": "deno run -EN examples/pipeline.ts",
+    "example:streams": "deno run -EN examples/streams.ts",
+    "example:advanced": "deno run -EN examples/advanced.ts"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@^1.0.13",
+    "@std/async": "jsr:@std/async@^1.0.13",
+    "@std/streams": "jsr:@std/streams@^1.0.10"
+  },
+  "exclude": [
+    "tests/",
+    "examples/",
+    "docker/",
+    ".vscode",
+    "docker-compose.yml"
+  ],
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve",
+    "include": [
+      "src/",
+      "mod.ts"
+    ],
+    "exclude": [
+      "*.md"
+    ]
+  },
+  "lint": {
+    "include": [
+      "src/",
+      "mod.ts"
+    ],
+    "exclude": [
+      "*.test.ts"
+    ],
+    "rules": {
+      "tags": [
+        "recommended"
+      ],
+      "include": [
+        "ban-untagged-todo"
+      ],
+      "exclude": [
+        "no-unused-vars"
+      ]
+    }
+  }
+}

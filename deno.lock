@@ -1,0 +1,82 @@
+{
+  "version": "5",
+  "specifiers": {
+    "jsr:@std/assert@^1.0.13": "1.0.13",
+    "jsr:@std/async@^1.0.13": "1.0.13",
+    "jsr:@std/bytes@^1.0.6": "1.0.6",
+    "jsr:@std/internal@^1.0.6": "1.0.9",
+    "jsr:@std/streams@^1.0.10": "1.0.10"
+  },
+  "jsr": {
+    "@std/assert@1.0.13": {
+      "integrity": "ae0d31e41919b12c656c742b22522c32fb26ed0cba32975cb0de2a273cb68b29",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/async@1.0.13": {
+      "integrity": "1d76ca5d324aef249908f7f7fe0d39aaf53198e5420604a59ab5c035adc97c96"
+    },
+    "@std/bytes@1.0.6": {
+      "integrity": "f6ac6adbd8ccd99314045f5703e23af0a68d7f7e58364b47d2c7f408aeb5820a"
+    },
+    "@std/internal@1.0.9": {
+      "integrity": "bdfb97f83e4db7a13e8faab26fb1958d1b80cc64366501af78a0aee151696eb8"
+    },
+    "@std/streams@1.0.10": {
+      "integrity": "75c0b1431873cd0d8b3d679015220204d36d3c7420d93b60acfc379eb0dc30af",
+      "dependencies": [
+        "jsr:@std/bytes"
+      ]
+    }
+  },
+  "redirects": {
+    "https://deno.land/std/streams/mod.ts": "https://deno.land/std@0.224.0/streams/mod.ts"
+  },
+  "remote": {
+    "https://deno.land/std@0.158.0/async/deferred.ts": "c01de44b9192359cebd3fe93273fcebf9e95110bf3360023917da9a2d1489fae",
+    "https://deno.land/std@0.224.0/assert/assert.ts": "09d30564c09de846855b7b071e62b5974b001bb72a4b797958fe0660e7849834",
+    "https://deno.land/std@0.224.0/assert/assertion_error.ts": "ba8752bd27ebc51f723702fac2f54d3e94447598f54264a6653d6413738a8917",
+    "https://deno.land/std@0.224.0/bytes/concat.ts": "86161274b5546a02bdb3154652418efe7af8c9310e8d54107a68aaa148e0f5ed",
+    "https://deno.land/std@0.224.0/bytes/copy.ts": "08d85062240a7223e6ec4e2af193ad1a50c59a43f0d86ac3a7b16f3e0d77c028",
+    "https://deno.land/std@0.224.0/io/_common.ts": "36705cdb4dfcd338d6131bca1b16e48a4d5bf0d1dada6ce397268e88c17a5835",
+    "https://deno.land/std@0.224.0/io/_constants.ts": "3c7ad4695832e6e4a32e35f218c70376b62bc78621ef069a4a0a3d55739f8856",
+    "https://deno.land/std@0.224.0/io/buffer.ts": "4d1f805f350433e418002accec798bc6c33ce18f614afa65f987c202d7b2234e",
+    "https://deno.land/std@0.224.0/io/iterate_reader.ts": "1e5e4fea22d8965afb7df4ee9ab9adda0a0fc581adbea31bc2f2d25453f8a6e9",
+    "https://deno.land/std@0.224.0/io/reader_from_stream_reader.ts": "a75bbc93f39df8b0e372cc1fbdc416a7cbf2a39fc4c09ddb057f1241100191c5",
+    "https://deno.land/std@0.224.0/io/to_readable_stream.ts": "ed03a44a1ec1cc55a85a857acf6cac472035298f6f3b6207ea209f93b4aefb39",
+    "https://deno.land/std@0.224.0/io/to_writable_stream.ts": "ef422e0425963c8a1e0481674e66c3023da50f0acbe5ef51ec9789efc3c1e2ed",
+    "https://deno.land/std@0.224.0/io/types.ts": "acecb3074c730b5ff487ba4fe9ce51e67bd982aa07c95e5f5679b7b2f24ad129",
+    "https://deno.land/std@0.224.0/io/write_all.ts": "24aac2312bb21096ae3ae0b102b22c26164d3249dff96dbac130958aa736f038",
+    "https://deno.land/std@0.224.0/streams/_common.ts": "948735ef6d140cd6916dca861197b88fc57db52c2f923c392b7a14033d8fed4b",
+    "https://deno.land/std@0.224.0/streams/buffer.ts": "e012de72a53ad17c56512488e9afb6f4b6ed046b32fc1415ae7a4e6fc0efce38",
+    "https://deno.land/std@0.224.0/streams/byte_slice_stream.ts": "5bbdcadb118390affa9b3d0a0f73ef8e83754f59bb89df349add669dd9369713",
+    "https://deno.land/std@0.224.0/streams/delimiter_stream.ts": "4e4050740ff27a8824defa6c96126229ef9d794c4ace4ef9cabb10b5ad4a5d14",
+    "https://deno.land/std@0.224.0/streams/early_zip_readable_streams.ts": "21f5cf6dd36381c6a50c31a7727b5bd219f6382bbb7a413418595c3e466c4d14",
+    "https://deno.land/std@0.224.0/streams/iterate_reader.ts": "a8e698d16373d49821172f90ec7ac011ef1aae7a4036ae4bace284ff99e2bc92",
+    "https://deno.land/std@0.224.0/streams/limited_bytes_transform_stream.ts": "b22a45a337374e863c4eb1867ec6b8ad3e68620a6c52fe837746060ea610e6f1",
+    "https://deno.land/std@0.224.0/streams/limited_transform_stream.ts": "4c47da5ca38a30fa9f33b0f1a61d4548e7f52a9a58c294b0f430f680e44cc543",
+    "https://deno.land/std@0.224.0/streams/merge_readable_streams.ts": "73eed8ff54c9111b8b974b11a5a11c1ed0b7800e0157c39277ccac3ed14721e2",
+    "https://deno.land/std@0.224.0/streams/mod.ts": "d56624832b9649b680c74ab9c77e746e8be81ae1a24756cc04623e25a0d43ce9",
+    "https://deno.land/std@0.224.0/streams/readable_stream_from_reader.ts": "64943452485bcba48e203fa8ae61c195aed9ab8b2a178e2fc6a383f761ce010a",
+    "https://deno.land/std@0.224.0/streams/reader_from_iterable.ts": "e7b064142b2a97bb562d958c2e4b4d129e923e9c9f2f6e003a4e16cbdcd62570",
+    "https://deno.land/std@0.224.0/streams/reader_from_stream_reader.ts": "b3519118ed2a32e3fb6201a4c257d5c4e58c38b5918bdc505a45fccbfa0a53f9",
+    "https://deno.land/std@0.224.0/streams/text_delimiter_stream.ts": "94dfc900204e306496c1b58c80473db57b6097afdcb8ea9eaff453a193a659f1",
+    "https://deno.land/std@0.224.0/streams/text_line_stream.ts": "21f33d3922e019ec1a1676474beb543929cb564ec99b69cd2654e029e0f45bd5",
+    "https://deno.land/std@0.224.0/streams/to_array_buffer.ts": "1a9c07c4a396ce557ab205c44415815ab13b614fed94a12f62b80f8e650c726d",
+    "https://deno.land/std@0.224.0/streams/to_blob.ts": "bf5daaae50fa8f57e0c8bfd7474ebac16ac09e130e3d01ef2947ae5153912b4a",
+    "https://deno.land/std@0.224.0/streams/to_json.ts": "b6a908d0da7cd30956e5fbbfa7460747e50b8f307d1041282ed6fe9070d579ee",
+    "https://deno.land/std@0.224.0/streams/to_text.ts": "6f93593bdfc2cea5cca39755ea5caf0d4092580c0a713dfe04a1e85c60df331f",
+    "https://deno.land/std@0.224.0/streams/to_transform_stream.ts": "4c4836455ef89bab9ece55975ee3a819f07d3d8b0e43101ec7f4ed033c8a2b61",
+    "https://deno.land/std@0.224.0/streams/writable_stream_from_writer.ts": "527fc1b136fc53a9f0b32641f04a4522c72617fa7ca3778d27ed064f9cd98932",
+    "https://deno.land/std@0.224.0/streams/writer_from_stream_writer.ts": "22cba4e5162fc443c7e5ef62f2054674cd6a20f5d7519a62db8d201496463931",
+    "https://deno.land/std@0.224.0/streams/zip_readable_streams.ts": "53eb10d7557539b489bd858907aab6dd28247f074b3446573801de3150cb932e"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/assert@^1.0.13",
+      "jsr:@std/async@^1.0.13",
+      "jsr:@std/streams@^1.0.10"
+    ]
+  }
+}
