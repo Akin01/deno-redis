@@ -1,0 +1,83 @@
+services:
+  # Basic Redis instance for development and testing
+  redis:
+    image: redis:7-alpine
+    container_name: deno-redis-test
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # Redis with authentication for testing auth scenarios
+  redis-auth:
+    image: redis:7-alpine
+    container_name: deno-redis-auth
+    ports:
+      - "6380:6379"
+    command: redis-server --requirepass testpass123 --save 60 1 --loglevel warning
+    volumes:
+      - redis_auth_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "testpass123", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # Redis with custom configuration
+  redis-config:
+    image: redis:7-alpine
+    container_name: deno-redis-config
+    ports:
+      - "6381:6379"
+    volumes:
+      - ./docker/redis.conf:/usr/local/etc/redis/redis.conf:ro
+      - redis_config_data:/data
+    command: redis-server /usr/local/etc/redis/redis.conf
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # Redis Insight for GUI management (optional)
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    container_name: deno-redis-insight
+    ports:
+      - "8001:8001"
+    volumes:
+      - redis_insight_data:/db
+    environment:
+      - RITRUSTEDORIGINS=http://localhost:8001
+    depends_on:
+      - redis
+      - redis-auth
+    restart: unless-stopped
+    profiles:
+      - tools
+
+volumes:
+  redis_data:
+    driver: local
+  redis_auth_data:
+    driver: local
+  redis_config_data:
+    driver: local
+  redis_insight_data:
+    driver: local
+
+networks:
+  default:
+    name: deno-redis-network
