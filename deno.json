@@ -27,6 +27,8 @@
     "fmt": "deno fmt",
     "lint": "deno lint",
     "check": "deno check mod.ts",
+    "publish": "deno publish",
+    "publish:dry": "deno publish --dry-run",
     "example:basic": "deno run -EN examples/basic.ts",
     "example:pubsub": "deno run -EN examples/pubsub.ts",
     "example:pipeline": "deno run -EN examples/pipeline.ts",
@@ -84,7 +86,9 @@
       "exclude": [
         "no-unused-vars",
         "no-explicit-any",
-        "explicit-function-return-type"
+        "explicit-function-return-type",
+        "explicit-module-boundary-types",
+        "no-inferrable-types"
       ]
     }
   }
