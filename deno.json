@@ -1,6 +1,6 @@
 {
   "name": "@akin01/deno-redis",
-  "version": "1.0.1",
+  "version": "0.1.1",
   "description": "A modern, fully-typed Redis client for Deno with enhanced performance, comprehensive TypeScript support, and native JSR compatibility.",
   "exports": {
     ".": "./mod.ts",
