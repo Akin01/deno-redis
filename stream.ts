@@ -353,7 +353,7 @@ export function parseXConsumerDetail(nestedRaws: Raw[][]): XConsumerDetail[] {
 
 export function xidstr(
 	xid: XIdAdd | XIdNeg | XIdPos | XIdCreateGroup | XIdGroupRead,
-) {
+): string {
 	if (typeof xid === "string") return xid;
 	if (typeof xid === "number") return `${xid}-0`;
 	if (xid instanceof Array && xid.length > 1) return `${xid[0]}-${xid[1]}`;

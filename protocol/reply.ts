@@ -187,19 +187,19 @@ class SimpleStringReply extends BaseReply {
 		this.#body = body;
 	}
 
-	override bulk() {
+	override bulk(): string {
 		return this.string();
 	}
 
-	override buffer() {
+	override buffer(): Uint8Array {
 		return this.#body;
 	}
 
-	override string() {
+	override string(): string {
 		return decoder.decode(this.#body);
 	}
 
-	override value() {
+	override value(): string {
 		return this.string();
 	}
 }
@@ -386,7 +386,9 @@ export async function readArrayReplyBody(
 	return array;
 }
 
-export const okReply = new SimpleStringReply(encoder.encode("OK"));
+export const okReply: SimpleStringReply = new SimpleStringReply(
+	encoder.encode("OK"),
+);
 
 function tryParseErrorReply(line: Uint8Array): never {
 	const code = line[0];
