@@ -1,15 +1,15 @@
 export type {
-  Binary,
-  Bulk,
-  BulkNil,
-  BulkString,
-  ConditionalArray,
-  Integer,
-  Raw,
-  RawOrError,
-  RedisReply,
-  RedisValue,
-  SimpleString,
+	Binary,
+	Bulk,
+	BulkNil,
+	BulkString,
+	ConditionalArray,
+	Integer,
+	Raw,
+	RawOrError,
+	RedisReply,
+	RedisValue,
+	SimpleString,
 } from "./types.ts";
 
 export { okReply, readArrayReplyBody, readReply } from "./reply.ts";

@@ -44,12 +44,12 @@ export type Binary = Uint8Array;
 export type ConditionalArray = Raw[];
 
 export interface RedisReply {
-  integer(): Integer;
-  string(): SimpleString;
-  bulk(): Bulk;
-  buffer(): Uint8Array;
-  array(): ConditionalArray | BulkNil;
-  value(): Raw;
+	integer(): Integer;
+	string(): SimpleString;
+	bulk(): Bulk;
+	buffer(): Uint8Array;
+	array(): ConditionalArray | BulkNil;
+	value(): Raw;
 }
 
 export type RawOrError = Raw | ErrorReplyError;

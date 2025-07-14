@@ -1,25 +1,25 @@
 import type { ConditionalArray, Raw, RedisValue } from "./protocol/mod.ts";
 
 export interface XId {
-  unixMs: number;
-  seqNo: number;
+	unixMs: number;
+	seqNo: number;
 }
 
 export interface XMessage {
-  xid: XId;
-  fieldValues: Record<string, string>;
+	xid: XId;
+	fieldValues: Record<string, string>;
 }
 
 export interface XKeyId {
-  key: string;
-  xid: XIdInput;
+	key: string;
+	xid: XIdInput;
 }
 
 export type XKeyIdLike = [string, XIdInput];
 
 export interface XKeyIdGroup {
-  key: string;
-  xid: XIdGroupRead;
+	key: string;
+	xid: XIdGroupRead;
 }
 
 export type XKeyIdGroupLike = [string, XIdGroupRead];
@@ -63,34 +63,34 @@ export type XIdNeg = XIdInput | "-";
 export type XIdCreateGroup = XIdInput | "$";
 
 export type XAddFieldValues =
-  | Record<string | number, RedisValue>
-  | Map<string | number, RedisValue>;
+	| Record<string | number, RedisValue>
+	| Map<string | number, RedisValue>;
 
 export interface XReadOpts {
-  count?: number;
-  block?: number;
+	count?: number;
+	block?: number;
 }
 
 export interface XReadGroupOpts {
-  group: string;
-  consumer: string;
-  count?: number;
-  block?: number;
+	group: string;
+	consumer: string;
+	count?: number;
+	block?: number;
 }
 
 export interface XMaxlen {
-  approx?: boolean;
-  elements: number;
+	approx?: boolean;
+	elements: number;
 }
 
 export type XClaimReply = XClaimMessages | XClaimJustXId;
 export interface XClaimMessages {
-  kind: "messages";
-  messages: XMessage[];
+	kind: "messages";
+	messages: XMessage[];
 }
 export interface XClaimJustXId {
-  kind: "justxid";
-  xids: XId[];
+	kind: "justxid";
+	xids: XId[];
 }
 
 /**
@@ -102,14 +102,14 @@ export interface XClaimJustXId {
  * pending messages it has.
  */
 export interface XPendingReply {
-  count: number;
-  startId: XId;
-  endId: XId;
-  consumers: XPendingConsumer[];
+	count: number;
+	startId: XId;
+	endId: XId;
+	consumers: XPendingConsumer[];
 }
 export interface XPendingConsumer {
-  name: string;
-  pending: number;
+	name: string;
+	pending: number;
 }
 
 /**
@@ -124,55 +124,55 @@ export interface XPendingConsumer {
  * @param timesDelivered The number of times this message was delivered.
  */
 export interface XPendingCount {
-  xid: XId;
-  owner: string;
-  lastDeliveredMs: number;
-  timesDelivered: number;
+	xid: XId;
+	owner: string;
+	lastDeliveredMs: number;
+	timesDelivered: number;
 }
 /** Used in the XPENDING command, all three of these
  * args must be specified if _any_ are specified.
  */
 export interface StartEndCount {
-  start: number | "-";
-  end: number | "+";
-  count: number;
+	start: number | "-";
+	end: number | "+";
+	count: number;
 }
 
 export interface XInfoStreamReply {
-  length: number;
-  radixTreeKeys: number;
-  radixTreeNodes: number;
-  groups: number;
-  lastGeneratedId: XId;
-  firstEntry: XMessage;
-  lastEntry: XMessage;
+	length: number;
+	radixTreeKeys: number;
+	radixTreeNodes: number;
+	groups: number;
+	lastGeneratedId: XId;
+	firstEntry: XMessage;
+	lastEntry: XMessage;
 }
 
 export interface XInfoStreamFullReply {
-  length: number;
-  radixTreeKeys: number;
-  radixTreeNodes: number;
-  lastGeneratedId: XId;
-  entries: XMessage[];
-  groups: XGroupDetail[];
+	length: number;
+	radixTreeKeys: number;
+	radixTreeNodes: number;
+	lastGeneratedId: XId;
+	entries: XMessage[];
+	groups: XGroupDetail[];
 }
 
 /**
  * Child of the return type for xinfo_stream_full
  */
 export interface XGroupDetail {
-  name: string;
-  lastDeliveredId: XId;
-  pelCount: number;
-  pending: XPendingCount[];
-  consumers: XConsumerDetail[];
+	name: string;
+	lastDeliveredId: XId;
+	pelCount: number;
+	pending: XPendingCount[];
+	consumers: XConsumerDetail[];
 }
 /** Child of XINFO STREAMS FULL response */
 export interface XConsumerDetail {
-  name: string;
-  seenTime: number;
-  pelCount: number;
-  pending: { xid: XId; lastDeliveredMs: number; timesDelivered: number }[];
+	name: string;
+	seenTime: number;
+	pelCount: number;
+	pending: { xid: XId; lastDeliveredMs: number; timesDelivered: number }[];
 }
 
 export type XInfoConsumersReply = XInfoConsumer[];
@@ -184,205 +184,205 @@ export type XInfoConsumersReply = XInfoConsumer[];
  * @param idle This consumer's idle time in milliseconds.
  */
 export interface XInfoConsumer {
-  name: string;
-  pending: number;
-  idle: number;
+	name: string;
+	pending: number;
+	idle: number;
 }
 
 /** Response to XINFO GROUPS <key> */
 export type XInfoGroupsReply = XInfoGroup[];
 export interface XInfoGroup {
-  name: string;
-  consumers: number;
-  pending: number;
-  lastDeliveredId: XId;
+	name: string;
+	consumers: number;
+	pending: number;
+	lastDeliveredId: XId;
 }
 
 export interface XClaimOpts {
-  group: string;
-  consumer: string;
-  minIdleTime: number;
-  idle?: number;
-  time?: number;
-  retryCount?: number;
-  force?: boolean;
-  justXId?: boolean;
+	group: string;
+	consumer: string;
+	minIdleTime: number;
+	idle?: number;
+	time?: number;
+	retryCount?: number;
+	force?: boolean;
+	justXId?: boolean;
 }
 
 export function parseXMessage(raw: XReadIdData): XMessage {
-  const fieldValues: Record<string, string> = {};
-  let f: string | undefined = undefined;
+	const fieldValues: Record<string, string> = {};
+	let f: string | undefined = undefined;
 
-  let m = 0;
-  for (const data of raw[1]) {
-    if (m % 2 === 0) {
-      f = data;
-    } else if (f) {
-      fieldValues[f] = data;
-    }
-    m++;
-  }
+	let m = 0;
+	for (const data of raw[1]) {
+		if (m % 2 === 0) {
+			f = data;
+		} else if (f) {
+			fieldValues[f] = data;
+		}
+		m++;
+	}
 
-  return { xid: parseXId(raw[0]), fieldValues: fieldValues };
+	return { xid: parseXId(raw[0]), fieldValues: fieldValues };
 }
 
 export function convertMap(raw: ConditionalArray): Map<string, Raw> {
-  const fieldValues: Map<string, Raw> = new Map();
-  let f: string | undefined = undefined;
+	const fieldValues: Map<string, Raw> = new Map();
+	let f: string | undefined = undefined;
 
-  let m = 0;
-  for (const data of raw) {
-    if (m % 2 === 0 && typeof data === "string") {
-      f = data;
-    } else if (m % 2 === 1 && f) {
-      fieldValues.set(f, data);
-    }
-    m++;
-  }
+	let m = 0;
+	for (const data of raw) {
+		if (m % 2 === 0 && typeof data === "string") {
+			f = data;
+		} else if (m % 2 === 1 && f) {
+			fieldValues.set(f, data);
+		}
+		m++;
+	}
 
-  return fieldValues;
+	return fieldValues;
 }
 
 export function parseXReadReply(raw: XReadReplyRaw): XReadReply {
-  const out: XReadStream[] = [];
-  for (const [key, idData] of raw ?? []) {
-    const messages = [];
-    for (const rawMsg of idData) {
-      messages.push(parseXMessage(rawMsg));
-    }
-    out.push({ key, messages });
-  }
+	const out: XReadStream[] = [];
+	for (const [key, idData] of raw ?? []) {
+		const messages = [];
+		for (const rawMsg of idData) {
+			messages.push(parseXMessage(rawMsg));
+		}
+		out.push({ key, messages });
+	}
 
-  return out;
+	return out;
 }
 
 export function parseXId(raw: string): XId {
-  const [ms, sn] = raw.split("-");
-  return { unixMs: parseInt(ms), seqNo: parseInt(sn) };
+	const [ms, sn] = raw.split("-");
+	return { unixMs: parseInt(ms), seqNo: parseInt(sn) };
 }
 
 export function parseXPendingConsumers(
-  raws: ConditionalArray,
+	raws: ConditionalArray,
 ): XPendingConsumer[] {
-  const out: XPendingConsumer[] = [];
+	const out: XPendingConsumer[] = [];
 
-  for (const raw of raws) {
-    if (isCondArray(raw) && isString(raw[0]) && isString(raw[1])) {
-      out.push({ name: raw[0], pending: parseInt(raw[1]) });
-    }
-  }
+	for (const raw of raws) {
+		if (isCondArray(raw) && isString(raw[0]) && isString(raw[1])) {
+			out.push({ name: raw[0], pending: parseInt(raw[1]) });
+		}
+	}
 
-  return out;
+	return out;
 }
 
 export function parseXPendingCounts(raw: ConditionalArray): XPendingCount[] {
-  const infos: XPendingCount[] = [];
-  for (const r of raw) {
-    if (
-      isCondArray(r) &&
-      isString(r[0]) &&
-      isString(r[1]) &&
-      isNumber(r[2]) &&
-      isNumber(r[3])
-    ) {
-      infos.push({
-        xid: parseXId(r[0]),
-        owner: r[1],
-        lastDeliveredMs: r[2],
-        timesDelivered: r[3],
-      });
-    }
-  }
+	const infos: XPendingCount[] = [];
+	for (const r of raw) {
+		if (
+			isCondArray(r) &&
+			isString(r[0]) &&
+			isString(r[1]) &&
+			isNumber(r[2]) &&
+			isNumber(r[3])
+		) {
+			infos.push({
+				xid: parseXId(r[0]),
+				owner: r[1],
+				lastDeliveredMs: r[2],
+				timesDelivered: r[3],
+			});
+		}
+	}
 
-  return infos;
+	return infos;
 }
 
 export function parseXGroupDetail(rawGroups: ConditionalArray): XGroupDetail[] {
-  const out = [];
+	const out = [];
 
-  for (const rawGroup of rawGroups) {
-    if (isCondArray(rawGroup)) {
-      const data = convertMap(rawGroup);
+	for (const rawGroup of rawGroups) {
+		if (isCondArray(rawGroup)) {
+			const data = convertMap(rawGroup);
 
-      // array of arrays
-      const consDeets = data.get("consumers") as ConditionalArray[];
+			// array of arrays
+			const consDeets = data.get("consumers") as ConditionalArray[];
 
-      out.push({
-        name: rawstr(data.get("name") ?? null),
-        lastDeliveredId: parseXId(
-          rawstr(data.get("last-delivered-id") ?? null),
-        ),
-        pelCount: rawnum(data.get("pel-count") ?? null),
-        pending: parseXPendingCounts(data.get("pending") as ConditionalArray),
-        consumers: parseXConsumerDetail(consDeets),
-      });
-    }
-  }
+			out.push({
+				name: rawstr(data.get("name") ?? null),
+				lastDeliveredId: parseXId(
+					rawstr(data.get("last-delivered-id") ?? null),
+				),
+				pelCount: rawnum(data.get("pel-count") ?? null),
+				pending: parseXPendingCounts(data.get("pending") as ConditionalArray),
+				consumers: parseXConsumerDetail(consDeets),
+			});
+		}
+	}
 
-  return out;
+	return out;
 }
 
 export function parseXConsumerDetail(nestedRaws: Raw[][]): XConsumerDetail[] {
-  const out: XConsumerDetail[] = [];
+	const out: XConsumerDetail[] = [];
 
-  for (const raws of nestedRaws) {
-    const data = convertMap(raws);
+	for (const raws of nestedRaws) {
+		const data = convertMap(raws);
 
-    const pending = (data.get("pending") as [string, number, number][]).map(
-      (p) => {
-        return {
-          xid: parseXId(rawstr(p[0])),
-          lastDeliveredMs: rawnum(p[1]),
-          timesDelivered: rawnum(p[2]),
-        };
-      },
-    );
+		const pending = (data.get("pending") as [string, number, number][]).map(
+			(p) => {
+				return {
+					xid: parseXId(rawstr(p[0])),
+					lastDeliveredMs: rawnum(p[1]),
+					timesDelivered: rawnum(p[2]),
+				};
+			},
+		);
 
-    const r = {
-      name: rawstr(data.get("name") ?? null),
-      seenTime: rawnum(data.get("seen-time") ?? null),
-      pelCount: rawnum(data.get("pel-count") ?? null),
-      pending,
-    };
+		const r = {
+			name: rawstr(data.get("name") ?? null),
+			seenTime: rawnum(data.get("seen-time") ?? null),
+			pelCount: rawnum(data.get("pel-count") ?? null),
+			pending,
+		};
 
-    out.push(r);
-  }
+		out.push(r);
+	}
 
-  return out;
+	return out;
 }
 
 export function xidstr(
-  xid: XIdAdd | XIdNeg | XIdPos | XIdCreateGroup | XIdGroupRead,
+	xid: XIdAdd | XIdNeg | XIdPos | XIdCreateGroup | XIdGroupRead,
 ) {
-  if (typeof xid === "string") return xid;
-  if (typeof xid === "number") return `${xid}-0`;
-  if (xid instanceof Array && xid.length > 1) return `${xid[0]}-${xid[1]}`;
-  if (isXId(xid)) return `${xid.unixMs}-${xid.seqNo}`;
-  throw "fail";
+	if (typeof xid === "string") return xid;
+	if (typeof xid === "number") return `${xid}-0`;
+	if (xid instanceof Array && xid.length > 1) return `${xid[0]}-${xid[1]}`;
+	if (isXId(xid)) return `${xid.unixMs}-${xid.seqNo}`;
+	throw "fail";
 }
 
 export function rawnum(raw: Raw): number {
-  return raw ? +raw.toString() : 0;
+	return raw ? +raw.toString() : 0;
 }
 export function rawstr(raw: Raw): string {
-  return raw ? raw.toString() : "";
+	return raw ? raw.toString() : "";
 }
 // deno-lint-ignore no-explicit-any
 export function isString(x: any): x is string {
-  return typeof x === "string";
+	return typeof x === "string";
 }
 
 // deno-lint-ignore no-explicit-any
 export function isNumber(x: any): x is number {
-  return typeof x === "number";
+	return typeof x === "number";
 }
 
 export function isCondArray(x: Raw): x is ConditionalArray {
-  const l = (x as ConditionalArray).length;
-  if (l > 0 || l < 1) return true;
-  else return false;
+	const l = (x as ConditionalArray).length;
+	if (l > 0 || l < 1) return true;
+	else return false;
 }
 
 function isXId(xid: XIdAdd): xid is XId {
-  return (xid as XId).unixMs !== undefined;
+	return (xid as XId).unixMs !== undefined;
 }

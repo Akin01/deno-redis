@@ -9,8 +9,8 @@ export class ErrorReplyError extends Error {}
 export class AuthenticationError extends Error {}
 
 export class InvalidStateError extends Error {
-  constructor(message?: string) {
-    const base = "Invalid state";
-    super(message ? `${base}: ${message}` : base);
-  }
+	constructor(message?: string) {
+		const base = "Invalid state";
+		super(message ? `${base}: ${message}` : base);
+	}
 }
